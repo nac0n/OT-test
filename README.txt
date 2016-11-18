@@ -89,7 +89,7 @@ From here we want to start the mongoDB database to use with our project:
 
 $ mongod --dbpath <dbpath>
 
-<dbpath> means the path to .\OT-test-sync\db\. This will put all your database files in that folder and start the database. You can access the database using the MongoDB shell located at C:\Program Files\MongoDB\Server\3.2\bin from which you then in terminal/command prompt type:
+<dbpath> means the path to .\OT-test\db\. This will put all your database files in that folder and start the database. You can access the database using the MongoDB shell located at C:\Program Files\MongoDB\Server\3.2\bin from which you then in terminal/command prompt type:
 $ mongo 
 ...to start the mongo shell.
 
