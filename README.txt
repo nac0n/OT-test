@@ -3,6 +3,8 @@
 -------------------------------------------------------------
 				Getting started
 -------------------------------------------------------------
+Github:
+https://github.com/nac0n/OT-test
 
 If you cloned from Github you need to add a "db" and "log" folder in root.
 
