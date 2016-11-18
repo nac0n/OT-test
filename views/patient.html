@@ -123,13 +123,12 @@
    
   <script src="./jquery/dist/jquery.min.js"></script>
   <script src="./bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="script.js"></script>
   <script src="dist/bundle.js"></script>
  
   <script type="text/javascript">
 	  $(document).ready(function(){
 	  	var text = '{"nodeSender":"","syncing":false,"formfields":{"firstname":{"value":"","time":"","colorClass":""},"lastname":{"value":"","time":"","colorClass":""},"personnummer":{"value":"","time":"","colorClass":""},"pulsrate":{"value":"","time":"","colorClass":""},"oxygen":{"value":"","time":"","colorClass":""},"diastolic":{"value":"","time":"","colorClass":""},"activeRadioButton":"","checklistButtonsId":{"sp02":"","af":"","puls":"","alert":"","temp":""}}}';
-		var ehrID = '1';
+		var ehrID = '28ac8bbc-eb14-4f01-a30d-bcff446e0bd4-Triage';
 		initCollection(ehrID, text);
 	  	subscribeToPatientFields(ehrID);
 	  });

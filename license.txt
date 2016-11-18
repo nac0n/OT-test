@@ -1,5 +1,5 @@
 Copyright 2016 Andreas Andersson, David Ridderheed, Henrik Lagerholm
-, Region Östergötland
+, Region Östergötland - Test och Innovation.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 
