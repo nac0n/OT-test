@@ -41,7 +41,7 @@ app.get('/', function (req, res, next) {
     });
 });
 
-//Starting the server by first initiating the existing database documents if needed which in our case would be the patients. 
+//Starting the server by first initiating the existing database documents if needed which in our case would be the //patients. 
 initiatePatients(startServer);
 function initiatePatients(callback) {
 
@@ -59,17 +59,18 @@ function initiatePatients(callback) {
         }
     });
 
-    //This code is how a patient is initiated but as we're initiating the patients on the client side (from patient.html), we don't need to initiate them here.
+    //This code is how a patient is initiated but as we're initiating the patients on the client side (from //patient.html), we don't need to initiate them here.
 
-    // var oneDoc = connection.get('patients', 'oneDoc');
-    // oneDoc.fetch(function (err) {
-    //     //console.log("Fetching doc!");
-    //     if (err) throw err;
-    //     if (oneDoc.type === null) {   
-    //         oneDoc.create(obj);
-    //         return;
-    //     }
-    // });
+    var oneDoc = connection.get('patients', 'Anita');
+    oneDoc.fetch(function (err) {
+        //console.log("Fetching doc!");
+        if (err) throw err;
+        if (oneDoc.type === null) {   
+            oneDoc.create(obj);
+            oneDoc.data
+            return;
+        }
+    });
 
     callback();
 }
@@ -97,8 +98,7 @@ function startServer() {
         backend.listen(stream);
     });
 
-    //We create and run the tcp server to handle data coming from Node-red flow. TCP can be switched out with websockets or similar. But we could not get it to work in our active time.
-    //
+    //We create and run the tcp server to handle data coming from Node-red flow. TCP can be switched out with //websockets or similar. But we could not get it to work in our active time.
     tcpServer = net.createServer((c) => {
         // 'connection' listener
         console.log('client connected');
@@ -111,6 +111,7 @@ function startServer() {
         c.on('data', function (data) {
             var str_data = data.toString();
             var obj = JSON.parse(str_data);
+        console.log(util.inspect(obj));
             if (typeof obj === 'object') {
                 var str_value = obj.value.toString();
             }
@@ -118,20 +119,25 @@ function startServer() {
                 console.log("´obj´ variable isn't a JSON");
             }
             
-            //We fetch the document requested by the node-red flow and apply new operations to it and thus send a operation event for the client to handle.
+            //We fetch the document requested by the node-red flow and apply new operations to it and thus send a //operation event for the client to handle.
             var doc = connection.get(obj.collection, obj.patient);
             doc.fetch(function(err) {
                 if (doc.type != null) {
-                    if(obj.sender == "puls") {
-                        doc.submitOp({p:['formfields', 'pulsrate' ,'value'], od:doc.data.formfields.pulsrate.value, oi:str_value});
-                        doc.submitOp({p:['formfields', 'pulsrate' ,'colorClass'], od:doc.data.formfields.pulsrate.colorClass, oi:obj.colorClass});
-                        doc.submitOp({p:['nodeSender'], od:doc.data.nodeSender.value, oi:obj.sender});
+                   
+                    if(obj.sender == "machine") {
+                        if(obj.activity == "pulsrate") {
+                            doc.submitOp({p:['formfields', 'pulsrate' ,'value'], od:doc.data.formfields.pulsrate.value, oi:str_value});
+                            doc.submitOp({p:['formfields', 'pulsrate' ,'colorClass'], od:doc.data.formfields.pulsrate.colorClass, oi:obj.colorClass});
+                            doc.submitOp({p:['formfields', 'pulsrate','sender'], od:doc.data.formfields.pulsrate.sender, oi:obj.sender});
+                        }
+                        else if(obj.activity == "oxygen") {
+                            doc.submitOp({p:['formfields', 'oxygen', 'value'], od:doc.data.formfields.oxygen.value, oi:str_value});
+                            doc.submitOp({p:['formfields','oxygen','colorClass'], od:doc.data.formfields.oxygen.colorClass, oi:obj.colorClass});
+                            doc.submitOp({p:['formfields','oxygen','sender'],od:doc.data.formfields.oxygen.sender, oi:obj.sender});
+                        }
                     }
-
-                    else if (obj.sender == "oxygen") {
-                        doc.submitOp({p:['formfields', 'oxygen' ,'value'], od:doc.data.formfields.oxygen.value, oi:str_value});
-                        doc.submitOp({p:['formfields', 'oxygen' ,'colorClass'], od:doc.data.formfields.oxygen.colorClass, oi:obj.colorClass});
-                        doc.submitOp({p:['nodeSender'], od:doc.data.nodeSender.value, oi:obj.sender});
+                    else if(obj.sender == "man") {
+                        console.log("Data comes from man");
                     }
 
                     else {

@@ -24,21 +24,23 @@ $(document).ready(function () {
             {
                 subscribeToAllFields(document.querySelector('#' + key), doc);
             }
-          	
+            
             doc.on('op', function (source, err) {
-	        	//if(err) throw err;
-	        	console.log("Operation!");
-	            operationChanged(source);
+                //if(err) throw err;
+                console.log("Operation!");
+                operationChanged(source);
 
             });
         });
     };
 
     //Initiate our documents for usage. This function is called in "patient.html".
-  	function initCollection(patientID, text) {
+    function initCollection(patientID, text) {
         var obj = JSON.parse(text);
+        console.log(obj);
         var doc = connection.get('patients', patientID);
         if(doc.data == null) {
+            console.log(doc);
             doc.create(obj);
             return;
         }
@@ -46,23 +48,24 @@ $(document).ready(function () {
 
     //Set initial value to each field in the document.
     function subscribeToAllFields (element, docitem) {
-    	if(element != null) {
-		    elementId = element.id;
-		    if((typeof element.value) == 'string') {
-		        var binding = new StringBinding(element, docitem, ['formfields', elementId ,'value']);
-		        binding.setup();
-		    }
-		    else if(elementId === "activeRadioButton") {
-		        setradiobutton();
-		    }
-		    
-		    else if (elementId == "checklistButtonsId") {
-		        setChecklistButtons();
-		    }
-    	}
-    	else {
-    		console.log("Element is null");
-    	}
+        if(element != null) {
+            elementId = element.id;
+            if((typeof element.value) == 'string') {
+                console.log(element);
+                var binding = new StringBinding(element, docitem, ['formfields', elementId ,'value']);
+                binding.setup();
+            }
+            else if(elementId === "activeRadioButton") {
+                setradiobutton();
+            }
+            
+            else if (elementId == "checklistButtonsId") {
+                setChecklistButtons();
+            }
+        }
+        else {
+            console.log("Element is null");
+        }
     };
 
      //Send a radiobutton operation event to the database. After the operation, the value will be 
@@ -92,37 +95,31 @@ $(document).ready(function () {
         doc.fetch(function (err){
             if (err) throw err;
             if(doc.type != null) {
-				console.log("Not null");
-            	doc.del(function () {
-                		console.log("deleted document");
-            	});
-	        }
-	    });
+                console.log("Not null");
+                doc.del(function () {
+                        console.log("deleted document");
+                });
+            }
+        });
     };
 
     //Incoming messages from Node-red is set here.
     function setREDPushValue(elementId) {
-		if(doc.id != null) {
-			//console.log(elementId);
-			
-			if(elementId == "pulsrate") {
-				var value = doc.data.formfields.pulsrate.value;
-		    	$('#pulsrate').val(value);
-				$('#'+elementId).attr('class', doc.data.formfields.pulsrate.colorClass);
-		    	//document.getElementById(elementId).className += doc.data.formfields.pulsrate.colorClass;
-		    	//console.log(doc.data.formfields.pulsrate.colorClass);
-		    	// changeColorAtField('pulsrate', "puls");
-			}
+        if(doc.id != null) {
+            //console.log(elementId);
+            
+            if(elementId == "pulsrate") {
+                var value = doc.data.formfields.pulsrate.value;
+                $('#pulsrate').val(value);
+                $('#'+elementId).attr('class', doc.data.formfields.pulsrate.colorClass);
+            }
 
-			else if(elementId == "oxygen"){
-				var value = doc.data.formfields.oxygen.value;
-		    	$('#oxygen').val(value);
-		    	$('#'+elementId).addClass(doc.data.formfields.oxygen.colorClass);
-		    	//document.getElementById(elementId).className += doc.data.formfields.oxygen.colorClass;
-		    	//console.log(doc.data.formfields.oxygen.colorClass);
-		    	// changeColorAtField('oxygen', "oxygen");
-			}
-		}
+            else if(elementId == "oxygen"){
+                var value = doc.data.formfields.oxygen.value;
+                $('#oxygen').val(value);
+                $('#'+elementId).addClass(doc.data.formfields.oxygen.colorClass);
+            }
+        }
     }
 
     //After an operation has been ran. This function will set the radiobutton to a new value according to database.
@@ -157,50 +154,50 @@ $(document).ready(function () {
     };
 
     //Creating a custom event.
-	function operationChanged(state) {
+    function operationChanged(state) {
         var evt = new CustomEvent('operationChanged', { detail: state });
         window.dispatchEvent(evt);
     }
 
     //Calling event that makes it possible to embed the project. Put functions that triggers by operations in here.
-	window.addEventListener('operationChanged', function (e) {
-		setREDPushValue(e.detail[0].p[1]);
+    window.addEventListener('operationChanged', function (e) {
+        setREDPushValue(e.detail[0].p[1]);
     });
 
-	//Get the currently active doc.
+    //Get the currently active doc.
     function getDoc() {        
         return doc;
     }
 
    $('#paused-icon').click(function() {
-   		doc.submitOp([{p:['syncing'], od:doc.data.syncing, oi:true}]);
-   		$('#paused-icon').hide();
-   		$('#syncing-icon').show();
+        doc.submitOp([{p:['syncing'], od:doc.data.syncing, oi:true}]);
+        $('#paused-icon').hide();
+        $('#syncing-icon').show();
    });
 
    $('#syncing-icon').click(function() {
-   		doc.submitOp([{p:['syncing'], od:doc.data.syncing, oi:false}]);
-   		$('#paused-icon').show();
-   		$('#syncing-icon').hide();
+        doc.submitOp([{p:['syncing'], od:doc.data.syncing, oi:false}]);
+        $('#paused-icon').show();
+        $('#syncing-icon').hide();
    });
 
   //   function changeColorAtField (elementID,sender) {
-		// // var color;
-		// // if(sender == "puls") {
-		// // 	color = doc.data.formfields.pulsrate.color;
-		// // }
-		// // else if(sender == "oxygen") {
-		// // 	color = doc.data.formfields.oxygen.color;
-		// // }
-		// // else {
-		// // 	color = 'red';
-		// // }
+        // // var color;
+        // // if(sender == "puls") {
+        // //   color = doc.data.formfields.pulsrate.color;
+        // // }
+        // // else if(sender == "oxygen") {
+        // //   color = doc.data.formfields.oxygen.color;
+        // // }
+        // // else {
+        // //   color = 'red';
+        // // }
 
-		// // $('#'+elementID).css('border-color', color);
-		// // document.getElementById("MyElement").className += sender.class;
+        // // $('#'+elementID).css('border-color', color);
+        // // document.getElementById("MyElement").className += sender.class;
   //   }
 
-	//Make functions global for usage outside the .js file.
+    //Make functions global for usage outside the .js file.
     global.subscribeToPatientFields = subscribeToPatientFields
     global.initCollection = initCollection;
     global.removePatient = removePatient;
