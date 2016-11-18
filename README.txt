@@ -4,6 +4,8 @@
 				Getting started
 -------------------------------------------------------------
 
+If you cloned from Github you need to add a "db" and "log" folder in root.
+
 See basicArchitecture.png for a general view of the project.
 
 	--------------------------------------------------
