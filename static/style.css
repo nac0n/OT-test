@@ -1,0 +1,59 @@
+/*body {
+  background: #ddd;
+}
+
+#container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
+}
+
+textarea#text1 {
+  font: 14px/1.3 sans-serif;
+  padding: 4px 8px;
+  height: 50%;
+  width: 45%;
+  box-sizing: border-box;
+  float: left;
+}
+
+textarea#text2 {
+  font: 14px/1.3 sans-serif;
+  padding: 4px 8px;
+  height: 50%;
+  width: 45%;
+  box-sizing: border-box;
+  float: right;
+}*/
+
+body {
+  background-color: #FFFFFF;
+}
+
+#patient {
+  background-color: #FFFFFF;
+}
+
+.vp-red {
+  border-color: red;
+}
+
+.vp-yellow {
+  border-color: yellow;
+}
+
+.vp-orange {
+  border-color: orange;
+}
+
+.vp-green {
+  /*green*/
+  border-color: #4fff30;
+}
+
+.vp-white {
+  /*green*/
+  border-color: #4fff30;
+}

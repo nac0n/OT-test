@@ -1,0 +1,1 @@
+var javascript = require('./static/javascript.js');

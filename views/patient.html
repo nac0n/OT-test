@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content = "width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no" />
+	<meta name="apple-mobile-web-app-title" content="onlyWebPro" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+	<!-- CSS -->
+	<link rel="shortcut icon" href="">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">  
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+
+	<title>SyncDoc</title>
+
+  </head>
+  <body>
+<br>
+<br>
+	<form action="#">
+		<div class="patient-input" >
+			<input type="text" class="patientclass" id="patientName" placeholder="Get patient">
+			<button onclick="changeCurrentPatient()" style="height: 30px; width: 30px"></button>
+		</div>
+	</form>
+	<form method="POST" id="submitnewpatient">
+		<div class="create-input" >
+			<input type="text" class="creation" id="create-patient" placeholder="Create patient">
+			<button type="submit" form="submitnewpatient" value="Create" style="height: 50px; width: 100px"></button>
+		</div>
+	</form>
+
+	<div class="col-md-12" id="patient">
+	  <h1>Patient</h1>
+	  <!-- Namn uppgifter -->
+	  <div class="form-group" >
+		<form>
+		  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+		  <label for="number">Namn</label>
+		  <input type="numbers" class="form-control" id="personnummer" maxlength="11" placeholder="xxxxxx-xxxx">
+		  <input type="text" class="form-control" id="firstname" placeholder="Förnamn">
+		  <input type="text" class="form-control" id="lastname" placeholder="Efternamn">
+		</form>
+	  </div>
+
+	  <!-- Sökorsak -->
+	  <div class="form-group">
+		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+		<label for="pulsrate">Puls</label>
+		<textarea id="pulsrate" class="form-control" rows="1" cols="50%" placeholder="Puls"></textarea><br> 
+
+		<span id="syncing-icon" onclick="" class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+		<span id="paused-icon" onclick="" class="glyphicon glyphicon-pause" aria-hidden="true"></span>  
+
+	  </div>
+	  <div class="form-group">
+		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+		<label for="oxygen">Syre</label>
+		<textarea id="oxygen" class="form-control" rows="1" cols="50%" placeholder="Syre"></textarea>
+	  </div>
+	   <div class="form-group">
+		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+		<label for="diastolic">Diastolic</label>
+		<textarea id="diastolic" class="form-control" rows="1" cols="50%" placeholder="Diastolic"></textarea>
+	  </div>
+
+<!--id="arrivalRadioButtons"-->
+	  <!-- Ankomst -->
+	  <div class="form-group" >
+		<div class="col-md-3">
+		  <label for="arrival">Ankomst</label>
+		  <br>
+		  <form name="arrivalRadioButtonsForm" class="radioButtons1" id="activeRadioButton">
+			<label class="radio-inline">
+			  <input type="radio" name="inlineRadioOption" id="inlineRadio1" value="1"> Ambulans
+			</label>
+			<label class="radio-inline">
+			  <input type="radio" name="inlineRadioOption" id="inlineRadio2" value="2"  > Gående
+			</label>
+			<label class="radio-inline">
+			  <input type="radio" name="inlineRadioOption" id="inlineRadio3" value="3"> Annat
+			</label>
+		  </form>
+		  <br>
+		</div>
+	  </div>
+
+	  <!-- Prioritet -->
+
+
+	  <!-- Checklista -->
+
+	  <div class="col-md-2">
+		<label for="checklist">Checklista</label>
+		  <br>
+		<form name= class="checklistButtonsClass" id="checklistButtonsId">
+			<input type="checkbox" name="checklistOption"  id="sp02box" value="sp02">Sp02
+			<input type="checkbox" name="checklistOption" id="afbox" value="af">AF
+			<input type="checkbox" name="checklistOption" id="pulsbox" value="puls">Puls
+			<input type="checkbox" name="checklistOption" id="alertbox" value="alert">Alert
+			<input type="checkbox" name="checklistOption" id="tempbox" value="temp">Temp
+		</form>
+	  </div>
+	  
+
+	  <!-- Remiss -->
+
+	  <div class="col-md-2">
+	  <label for="arival">Remiss</label>
+	  <br>
+
+
+	  </div>
+  <!-- Javascript -->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+   
+  <script src="./jquery/dist/jquery.min.js"></script>
+  <script src="./bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+  <script src="dist/bundle.js"></script>
+ 
+  <script type="text/javascript">
+	  $(document).ready(function(){
+	  	var text = '{"nodeSender":"","syncing":false,"formfields":{"firstname":{"value":"","time":"","colorClass":""},"lastname":{"value":"","time":"","colorClass":""},"personnummer":{"value":"","time":"","colorClass":""},"pulsrate":{"value":"","time":"","colorClass":""},"oxygen":{"value":"","time":"","colorClass":""},"diastolic":{"value":"","time":"","colorClass":""},"activeRadioButton":"","checklistButtonsId":{"sp02":"","af":"","puls":"","alert":"","temp":""}}}';
+		var ehrID = '1';
+		initCollection(ehrID, text);
+	  	subscribeToPatientFields(ehrID);
+	  });
+	
+  </script>
+  
+  </body>
+</html>

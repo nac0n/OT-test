@@ -1,0 +1,44 @@
+{
+    "nodeSender": "",
+    "syncing": false,
+    "formfields": {
+        "firstname": {
+            "value": "",
+            "time": "",
+            "colorClass": ""
+        },
+        "lastname": {
+            "value": "",
+            "time": "",
+            "colorClass": ""
+        },
+        "personnummer": {
+            "value": "",
+            "time": "",
+            "colorClass": ""
+        },
+        "pulsrate": {
+            "value": "",
+            "time": "",
+            "colorClass": ""
+        },
+        "oxygen": {
+            "value": "",
+            "time": "",
+            "colorClass": ""
+        },
+        "diastolic": {
+            "value": "",
+            "time": "",
+            "colorClass": ""
+        },
+        "activeRadioButton": "",
+        "checklistButtonsId": {
+            "sp02": "",
+            "af": "",
+            "puls": "",
+            "alert": "",
+            "temp": ""
+        }
+    }
+}

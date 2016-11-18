@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body>
+<div class="container">
+    <form method=POST id="loginform" action="/patient">
+        <h2>Logga in</h2>
+        <input type="username" id="username" placeholder="Username" class="form-control"><br>
+        <input type="password" id="password" placeholder="Password" class="form-control"><br>
+        <!--<input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br> -->
+        <input type="submit" value="Logga in" class="btn btn-primary" />
+    </form>
+</div>
+<br><br><hr><br><br>
+<div class="container">
+    <form method=POST id="createuserform" action="/">
+        <h2>Skapa personal</h2>
+        <input type="username" id="createusername" placeholder="Username" class="form-control"><br>
+        <input type="password" id="createpassword" placeholder="Password" class="form-control"><br>
+        <!--<input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br> -->
+        <input type="submit" value="Skapa användare" class="btn btn-primary" />
+    </form>
+</div>
+    <!-- Javascript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!--<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <script src="bootstrap-datetimepicker.min.js"></script>
+    <script src="dist/bundle.js"></script>
+</body>
+</html>

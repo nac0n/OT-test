@@ -1,0 +1,31 @@
+{
+  "name": "nodesharedb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/browserify main.js -o static/dist/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "browserify": "^13.1.0",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "json-over-tcp": "^0.3.2",
+    "mongodb": "^2.2.10",
+    "node-red": "^0.15.1",
+    "sharedb": "^1.0.0-beta.5",
+    "sharedb-mongo": "^1.0.0-beta.3",
+    "sharedb-string-binding": "^1.0.0",
+    "switch": "0.0.0",
+    "websocket-json-stream": "0.0.3",
+    "ws": "^1.1.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0"
+  }
+}
