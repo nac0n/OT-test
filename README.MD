@@ -39,7 +39,7 @@ Useful links:
 Inside the package.json file we have several dependecies for the project which we can install with a simple npm command (npm install).
 
 Firstly, open a terminal/command prompt window with admin rights and navigate to the folder containing the package.json file.
-$ cd <path-to-the-package.json-file>
+$ cd path-to-the-package.json-file
 
 Inside this path; Type: 
 $ npm install
@@ -50,7 +50,7 @@ If you want to install additional modules, just use the previous command:
 $ npm install --save modulename
 
 If you're having problem installing the modules with npm and you're behind a proxy, try:
-$ npm config set proxy http://<proxyadress>:<proxyport>
+$ npm config set proxy http://proxyadress:proxyport
 
 -------------------------------------------------------------
 				Installing Node-red
@@ -70,7 +70,7 @@ This will install Node-red globally on your computer which allows you to access 
 To allow an access to sharedb and mongodb from Node-red you need to first install the modules.
 You do this with npm:
 
-$ cd C:\Users\<username>\.node-red
+$ cd C:\Users\computerusername\.node-red
 $ npm install --save sharedb
 $ npm install --save sharedb-mongo
 
@@ -87,9 +87,9 @@ $ cd C:\Program Files\MongoDB\Server\3.2\bin
 
 From here we want to start the mongoDB database to use with our project:
 
-$ mongod --dbpath <dbpath>
+$ mongod --dbpath 'dbpath'
 
-<dbpath> means the path to .\OT-test\db\. This will put all your database files in that folder and start the database. You can access the database using the MongoDB shell located at C:\Program Files\MongoDB\Server\3.2\bin from which you then in terminal/command prompt type:
+'dbpath' means the path to .\OT-test\db\. This will put all your database files in that folder and start the database. You can access the database using the MongoDB shell located at C:\Program Files\MongoDB\Server\3.2\bin from which you then in terminal/command prompt type:
 $ mongo 
 ...to start the mongo shell.
 
@@ -100,7 +100,7 @@ To run the Node.js server, open the project folder in terminal/command prompt as
 $ npm run build && npm start 
 
 The server is started this way because we use Browserify to create a bundle.js file so that we can access modules from the client script. Otherwise you usually start a node.js server with:
-$ node <servername.js>
+$ node 'servername.js'
 But we do not start the server this way because of Browserify.
 
 If there was an error, try reading the readme over again.
